@@ -94,7 +94,7 @@ def get_ps_magic_script(layout_path,cellname):
 def generate_image_file(layout_path,cellname):
 	print(os.popen("mkdir -p "+layout_path+"/img").read())
 	print(os.popen("magic -Tscmos.tech -noconsole << EOF"+get_ps_magic_script(layout_path,cellname)+"EOF").read())
-	print(os.popen("gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=pngalpha -sOutputFile="+layout_path+"/img/"+cellname+".png -dMinFeatureSize=4 -dDownScaleFactor=1 /tmp/"+cellname+".ps").read())
+	print(os.popen("gs -r2400 -dSAFER -dBATCH -dNOPAUSE -sDEVICE=pngalpha -sOutputFile="+layout_path+"/img/"+cellname+".png -dMinFeatureSize=4 -dDownScaleFactor=1 -f /tmp/"+cellname+".ps").read())
 	print(os.popen("rm /tmp/"+cellname+".ps").read())
 
 def generate_pdf_file(layout_path,cellname):
