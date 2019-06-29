@@ -9,9 +9,9 @@
 #                           www.chipforge.org
 #                   there are projects from small cores up to PCBs, too.
 #
-#   File:           PearlRiver/GNUmakefile
+#   File:           PearlRiver/Documents/LaTeX/GNUmakefile
 #
-#   Purpose:        Root Makefile
+#   Purpose:        Makefile for Document Generation in LaTeX
 #
 #   ************    GNU Make 3.80 Source Code       ****************
 #
@@ -39,30 +39,21 @@ PROJECT =       PearlRiver
 
 #   directory pathes
 
-DOCUMENTSDIR =  Documents
-LIBRARYDIR =    Library
-LAYOUTDIR =     Layout
-TOOLSDIR =      Tools
+DOCUMENTSDIR =  .
+OUTPUTDIR =     ..
 
 #   tool variables
 
 CAT ?=          @cat
 ECHO ?=         @echo # -e
 MV ?=           mv
+RM ?=           rm -f
 TAR ?=          tar -zh
 DATE :=         $(shell date +%Y%m%d)
 
 #   project tools
 
-#   ??
-
-#   default
-
-DISTRIBUTION =  ./GNUmakefile \
-                $(DOCUMENTSDIR) \
-                $(LIBRARYDIR) \
-                $(LAYOUTDIR) \
-                $(TOOLSDIR)
+LATEX ?=        lualatex
 
 #   ----------------------------------------------------------------
 #               DEFAULT TARGETS
@@ -77,33 +68,25 @@ help:
 	$(ECHO) "-------------------------------------------------------------------"
 	$(ECHO) ""
 	$(ECHO) "    help       - print this help screen"
-	$(ECHO) "    dist       - build a tarball with all important files"
 	$(ECHO) "    clean      - clean up all intermediate files"
 	$(ECHO) ""
 	$(ECHO) "    doc        - compile documentation"
 	$(ECHO) ""
 
 
-#   make archiv by building a tarball with all important files
-
-.PHONY: dist
-dist: clean
-	$(ECHO) "---- build a tarball with all important files ----"
-	$(TAR) -cvf $(PROJECT)_$(DATE).tgz $(DISTRIBUTION)
-
-#   well, 'clean' directories before distributing
-
 .PHONY: clean
 clean:
-	$(ECHO) "---- clean up all intermediate files ----"
-	$(MAKE) -C $(DOCUMENTSDIR)/LaTeX -f GNUmakefile $@
+	$(RM) *.aux *.idx *.log *.toc *.out
 
 #   ----------------------------------------------------------------
 #               DOCUMENTATION TARGETS
 #   ----------------------------------------------------------------
 
 .PHONY: doc
-doc:
-	$(MAKE) -C $(DOCUMENTSDIR)/LaTeX -f GNUmakefile $@
+doc:    pdf clean
 
-
+.PHONY: pdf
+pdf:    $(PROJECT).tex revision.tex
+	$(LATEX) $<
+	$(LATEX) $<
+	$(MV) $(PROJECT).pdf $(OUTPUTDIR)
