@@ -9,9 +9,9 @@ rect 100 226 200 246
 rect 130 208 170 226
 rect 130 74 170 92
 rect 100 54 200 74
-<< rndiffusion >>
+<< rnfet >>
 rect 130 152 170 170
-<< rpdiffusion >>
+<< rpfet >>
 rect 130 130 170 148
 << rpoly >>
 rect 130 148 170 152

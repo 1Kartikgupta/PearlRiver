@@ -13,9 +13,9 @@ rect 90 122 145 132
 rect 155 122 210 132
 rect 90 100 100 122
 rect 200 100 210 122
-<< rndiffusion >>
+<< rnfet >>
 rect 147 153 152 159
-<< rpdiffusion >>
+<< rpfet >>
 rect 147 144 152 150
 << rpoly >>
 rect 147 150 152 153
