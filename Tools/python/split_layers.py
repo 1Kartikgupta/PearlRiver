@@ -37,7 +37,7 @@ def get_gds_magic_script(layout_path,cellname):
 	magic_script+="\n"
 	magic_script+="tech load scmos"
 	magic_script+="\n"
-	magic_script+="cif ostyle lambda=0.5(libresilicon)"
+	magic_script+="cif ostyle lambda=0.5(gen)(libresilicon)"
 	magic_script+="\n"
 	magic_script+="load "+layout_path+"/magic/"+cellname+".mag"
 	magic_script+="\n"
