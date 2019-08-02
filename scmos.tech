@@ -1703,12 +1703,10 @@ style lambda=0.5(gen)(libresilicon)
  templayer first_metal m1,contacts,m2c
 
  templayer first_via m2c
-  shrink 50
 
  templayer second_metal m2,m2c,m3c
 
  templayer second_via m3c
-  shrink 50
 
  templayer third_metal m3,m3c,pad,silk
 
@@ -1777,19 +1775,21 @@ style lambda=0.5(gen)(libresilicon)
   calma 13 0
 
  layer CCA contacts
-  shrink 50
+         squares 100
   calma 14 0
 
  layer CMF first_metal
   calma 15 0
 
  layer CVA first_via
+         squares 100
   calma 16 0
 
  layer CMS second_metal
   calma 17 0
 
  layer CVS second_via
+         squares 100
   calma 18 0
 
  layer CMT third_metal
